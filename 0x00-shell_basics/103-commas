@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -pd1 [[:digit:][:alpha:]].* | tr '\n' ',' && ls -pd1 .*[^.] | tr '\n' ',' && echo
