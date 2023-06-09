@@ -1,2 +1,2 @@
 #!/bin/bash
-if [ "$(id -u -n)" = "guillaume" ] then chown betty:hello hello
+if [ "$(id -u -n)" = "guillaume" ] then chown betty: "$(dirname "$0")/hello"
