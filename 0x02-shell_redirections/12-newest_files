@@ -1,15 +1,2 @@
 #!/bin/bash
-
-# Get the list of all files in the current directory
-files=$(ls -1)
-
-# Sort the list of files by modification time, in descending order
-files_sorted=$(sort -rn <<<"$files")
-
-# Get the first 10 files from the sorted list
-newest_files=$(echo "$files_sorted" | head -n 10)
-
-# Print each file on a new line
-for file in $newest_files; do
-  echo "$file"
-done
+ls -lt | grep -v '^total' | awk '{print $9}' | head -n 10
