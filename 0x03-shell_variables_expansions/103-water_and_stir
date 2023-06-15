@@ -1,0 +1,2 @@
+#!/bin/bash
+result=$(echo "$WATER + $STIR" | bc) echo "obase=bestchol; $result" | bc
