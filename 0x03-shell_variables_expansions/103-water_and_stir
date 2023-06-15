@@ -1,2 +1,2 @@
 #!/bin/bash
-result=$(echo "$WATER + $STIR" | bc) echo "obase=bestchol $result" | bc
+result=$(echo "$WATER + $STIR" ) echo "obase=bestchol $result" 
