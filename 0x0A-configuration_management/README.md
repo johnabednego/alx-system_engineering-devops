@@ -1,7 +1,7 @@
 0x0A. Configuration management
 DevOpsSysAdminScriptingCI/CD
 
-    By: Sylvain Kalache
+    By: John Abednego Jilima
     Weight: 1
 
 Background Context
