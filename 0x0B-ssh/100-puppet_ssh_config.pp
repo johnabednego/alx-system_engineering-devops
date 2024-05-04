@@ -1,16 +1,16 @@
-# Seting up my client config file
-include stdlib
+# Configure the SSH client to use passwordless authentication
+# using the private key ~/.ssh/school.
 
-file_line { 'Turn off passwd auth':
-  ensure => present,
-  path   => '/etc/ssh/ssh_config',
-  line   => '    PasswordAuthentication no',
-  replace => true,
-}
+  file { '/etc/ssh/ssh_config':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => "
+      Host *
+        IdentityFile ~/.ssh/school
+        PasswordAuthentication no
+    ",
+  }
 
-file_line { 'Delare identity file':
-  ensure => present,
-  path   => '/etc/ssh/ssh_config',
-  line   => '     IdentityFile ~/.ssh/school',
-  replace => true,
-}
+
