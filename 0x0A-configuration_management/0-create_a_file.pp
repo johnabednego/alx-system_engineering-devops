@@ -1,9 +1,10 @@
-#creates a temporary file in tmp
+# creating a puppet file
+
 file { '/tmp/school':
-ensure  => present,
-path    => '/tmp/school',
-mode    => '0744',
-owner   => www-data,
-group   => www-data,
-content => 'I love Puppet',
+  ensure  => file,
+  mode    => '0744',
+  owner   => 'www-data',
+  group   => 'www-data',
+  content => 'I love Puppet',
 }
+
