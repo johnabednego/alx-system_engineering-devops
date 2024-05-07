@@ -1,13 +1,20 @@
-# `Web-Server`
-![](https://www.hostinger.in/tutorials/wp-content/uploads/sites/2/2018/06/How-Server-Work.png)
+##0x0C. Web server
+- `DevOps` `SysAdmin`
+
+```
+*In a nutshell…*
+- **Auto QA review:** 0.0/13 mandatory & 0.0/4 optional
+- **Altogether:  0.0%**
+  - Mandatory: 0.0%
+  - Optional: 0.0%
+  - Calculation:  0.0% + (0.0% * 0.0%)  == **0.0%**
+```
 
 
-# `General`
-* What is the main role of a web server
-* Why web servers usually have a parent process and child processes
-* What are the main HTTP requests
-## `DNS`
-* What DNS stands for
-* What is DNS main role
-## `DNS Record Types`
-**A**        **CNAME**       **TXT**       **MX**
+**Concepts**
+-----------
+For this project, we expect you to look at this concept:
+
+* [What is a Child Process?](https://intranet.alxswe.com/concepts/110)
+![](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/266/8Gu52Qv.png)
+ @
