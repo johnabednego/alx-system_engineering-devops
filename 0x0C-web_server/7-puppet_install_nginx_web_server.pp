@@ -1,33 +1,24 @@
-# Puppet manifest to configure nginx server
+# Setup New Ubuntu server with nginx
 
-$command_path = ['/usr/bin/', '/usr/sbin', '/bin']
-
-exec { 'update_package_repo':
-  provider => 'shell',
-  path     => $command_path,
-  command  => 'sudo apt -y update',
+exec { 'update system':
+        command => '/usr/bin/apt-get update',
 }
 
-exec { 'install_nginx':
-  provider => 'shell',
-  path     => $command_path,
-  command  => 'sudo apt -y install nginx'
+package { 'nginx':
+	ensure => 'installed',
+	require => Exec['update system']
 }
 
-exec { 'home_page':
-  provider => 'shell',
-  path     => $command_path,
-  command  => 'sudo echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html'
+file {'/var/www/html/index.html':
+	content => 'Hello World!'
 }
 
-exec { 'redirection':
-  provider => 'shell',
-  path     => $command_path,
-  command  => 'sudo sed -i "s@server_name _;@server_name _;\n\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;@g" /etc/nginx/sites-available/default'
+exec {'redirect_me':
+	command => 'sed -i "24i\	rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default',
+	provider => 'shell'
 }
 
-exec { 'nginx_start':
-  provider => 'shell',
-  path     => $command_path,
-  command  => 'sudo service nginx start'
+service {'nginx':
+	ensure => running,
+	require => Package['nginx']
 }
