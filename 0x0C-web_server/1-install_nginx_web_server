@@ -1,24 +1,20 @@
 #!/usr/bin/env bash
-# Installs Nginx with the following configurations:
-#+    Listens on port 80.
-#+    Returns a page containing "Hello World!" when queried
-#++    at the root with a curl GET request.
+# Commands to install Nginx on Web-Sever-01
 
+# Updating Packages before making Installations
 sudo apt-get update
-sudo apt-get install -y nginx
+sudo apt-get -y install nginx
 
-# allowing nginx on port 80
+# Configuring the Uncomplicated Firewall (UFW) to allow incoming traffic for the Nginx HTTP service
 sudo ufw allow 'Nginx HTTP'
 
-# Give the user ownership to website files
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
+# Creating an index.html page
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
-# Backup default index
-cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+# Testing Nginx configurations for Syntax errors
+sudo nginx -t
 
-# Creating new index
-echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
+# Restarting Nginx
+sudo service nginx start
 
-# Restarting nginx
-sudo service nginx restart
+
