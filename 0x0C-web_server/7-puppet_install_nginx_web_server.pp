@@ -1,7 +1,33 @@
-# Installs a Nginx server
+# Puppet manifest to configure nginx server
 
-exec {'install':
-  provider => shell,
-  command  => 'sudo apt-get -y update ; sudo apt-get -y install nginx ; echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html ; sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/osiota10 permanent;/" /etc/nginx/sites-available/default ; sudo service nginx start',
+$command_path = ['/usr/bin/', '/usr/sbin', '/bin']
+
+exec { 'update_package_repo':
+  provider => 'shell',
+  path     => $command_path,
+  command  => 'sudo apt -y update',
 }
 
+exec { 'install_nginx':
+  provider => 'shell',
+  path     => $command_path,
+  command  => 'sudo apt -y install nginx'
+}
+
+exec { 'home_page':
+  provider => 'shell',
+  path     => $command_path,
+  command  => 'sudo echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html'
+}
+
+exec { 'redirection':
+  provider => 'shell',
+  path     => $command_path,
+  command  => 'sudo sed -i "s@server_name _;@server_name _;\n\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;@g" /etc/nginx/sites-available/default'
+}
+
+exec { 'nginx_start':
+  provider => 'shell',
+  path     => $command_path,
+  command  => 'sudo service nginx start'
+}
