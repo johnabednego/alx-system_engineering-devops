@@ -1,1 +1,3 @@
-# Solutions to tasks on MySQL
+# Install MYSQL
+
+Install Mysql Server on both servers
